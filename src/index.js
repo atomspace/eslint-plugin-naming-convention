@@ -1,1 +1,1 @@
-console.log("reating eslint plugin, yes");
+console.log('reating eslint plugin, yes');
