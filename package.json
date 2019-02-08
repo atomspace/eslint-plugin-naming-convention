@@ -1,0 +1,33 @@
+{
+  "name": "eslint-plugin-naming-convention",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "neutrino test --verbose --noStackTrace",
+    "start": "neutrino start",
+    "build": "neutrino build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atomspace/eslint-plugin-naming-convention.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atomspace/eslint-plugin-naming-convention/issues"
+  },
+  "homepage": "https://github.com/atomspace/eslint-plugin-naming-convention#readme",
+  "devDependencies": {
+    "@neutrinojs/node": "8.3.0",
+    "neutrino": "8.3.0",
+    "@atomspace/eslint": "2.4.0",
+    "@neutrinojs/jest": "8.3.0"
+  },
+  "files": [
+    "build",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ]
+}
