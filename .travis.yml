@@ -1,13 +1,19 @@
 lenguage: node_js
 node_js: 
   - "6.9"
+install:
+  - npm install
 cache:
   directories:
     - node_modules
+script:
+  - npm run build
 deploy:
   provider: npm
   email: "YOUR_EMAIL_ADDRESS"
   api_key: "YOUR_AUTH_TOKEN"
+  github_token: "YOUR_GITHUB_TOKEN"
+  local_dir: build
   on:
     branch: master
     tags: true
