@@ -8,11 +8,12 @@ cache:
     - node_modules
 script:
   - npm run build
+  - npm test
 deploy:
   provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN"
-  github_token: "YOUR_GITHUB_TOKEN"
+  email: "pytechmike@gmail.com"
+  api_key: "7afce674150a3fcbe06118d34c6b3f03711983a9"
+  github_token: "fbc09db2d091052336e19c200b11f904137e8f61"
   local_dir: build
   on:
     branch: master
