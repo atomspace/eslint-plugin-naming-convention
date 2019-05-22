@@ -2,7 +2,7 @@
   "name": "eslint-plugin-naming-convention",
   "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "neutrino test --verbose --noStackTrace",
     "start": "neutrino start",
@@ -21,13 +21,19 @@
   "devDependencies": {
     "@neutrinojs/node": "8.3.0",
     "neutrino": "8.3.0",
-    "@atomspace/eslint": "2.4.0",
+    "@atomspace/eslint": "2.5.2",
     "@neutrinojs/jest": "8.3.0"
   },
   "files": [
-    "build",
+    "src",
     "LICENSE",
     "README.md",
     "package.json"
-  ]
+  ],
+  "dependencies": {
+    "requireindex": "^1.2.0"
+  },
+  "peerDependencies": {
+    "eslint": "^4.0.0"
+  }
 }

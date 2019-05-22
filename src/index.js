@@ -1,1 +1,4 @@
-console.log('reating eslint plugin, yes');
+module.exports = require('requireindex')(__dirname);
+
+
+console.log(module.exports);
