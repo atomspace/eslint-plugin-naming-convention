@@ -1,0 +1,1 @@
+console.log(typeof new Number(67));
