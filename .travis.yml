@@ -15,5 +15,6 @@ deploy:
   api_key: "$NPM_TOKEN"
   local_dir: build
   skip_cleanup: false
+  on:
     tags: true
     branch: master
