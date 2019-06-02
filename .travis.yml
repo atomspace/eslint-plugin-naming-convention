@@ -1,0 +1,20 @@
+lenguage: node_js
+node_js: 
+  - "10"
+install:
+  - npm install
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  # - npm run build
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key: "$NPM_TOKEN"
+  local_dir: build
+  skip_cleanup: false
+  on:
+    tags: true
+    branch: master
