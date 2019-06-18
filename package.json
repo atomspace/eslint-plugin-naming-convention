@@ -26,7 +26,7 @@
     "neutrino": "8.3.0"
   },
   "files": [
-    "build",
+    "src",
     "LICENSE",
     "README.md",
     "package.json"
