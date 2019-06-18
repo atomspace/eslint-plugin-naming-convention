@@ -23,8 +23,7 @@
     "@neutrinojs/jest": "8.3.0",
     "@neutrinojs/node": "8.3.0",
     "eslint": "*",
-    "neutrino": "8.3.0",
-    "jest": "^24.7.1"
+    "neutrino": "8.3.0"
   },
   "files": [
     "build",
