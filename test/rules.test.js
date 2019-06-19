@@ -33,6 +33,9 @@ Object.assign(ruleTester.testerConfig, {
 				},
 				{
 					code:'let obj = {zno:"the end"}',
+				},
+				{
+					code:'let obj = {'chapter-six':'Tokyo'}'
 				}
 			],
 			invalid: [{
