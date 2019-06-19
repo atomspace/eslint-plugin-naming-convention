@@ -4,7 +4,7 @@ let RuleTester = require('eslint').RuleTester;
 
 let ruleTester = new RuleTester();	
 
-const errorMessage = [{ message: "variable name consist non-latin char." }];
+const errorMessage = 'variable name consist non-latin char';
 
 Object.assign(ruleTester.testerConfig, {
 	parserOptions: {
@@ -37,32 +37,32 @@ Object.assign(ruleTester.testerConfig, {
 					code:'let obj = {zno:"the end"}'
 				},
 				{
-					code:'let obj = {'chapter-six':'Tokyo'}'
+					code:`let obj = {'chapter-six':'Tokyo'}`
 				}
 			],
 			invalid: [{
 					code: 'let табулатура = true',
-					errors: errorMessage
+					errors: [{ message: errorMessage}]
 				},
 				{
 					code:'var амброзия = 90',
-					errors: errorMessage
+					errors: [{ message: errorMessage }]
 				},
 				{
 					code:'var Аббреviatura = 57',
-					errors: errorMessage
+					errors: [{ message: errorMessage }]
 				},
 				{
 					code:'function функция(){return 1;}',
-					errors: errorMessage
+					errors: [{ message: errorMessage }]
 				},
 				{
 					code:'[34,45].дляКаждого((element) => element)',
-					errors: errorMessage
+					errors: [{ message: errorMessage }]
 				},
 				{
 					code:'let obъект = {callMe:23}',
-					errors: errorMessage
+					errors: [{ message: errorMessage }]
 				}
 			]
 		});
