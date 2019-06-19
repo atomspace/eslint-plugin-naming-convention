@@ -9,7 +9,6 @@ Object.assign(ruleTester.testerConfig, {
 		ecmaVersion:2018
 	}
 }); 
-// Проверить свойства объектов и аргументы функции, function declaration, named function expression
 		ruleTester.run('latin-var-name-only', latinVarNameOnly, {
 			valid: [{
 					code: 'var whiteAlbum = true'
