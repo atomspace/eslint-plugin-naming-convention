@@ -1,21 +1,36 @@
-let mostCommonWords = new Set('the', 'of', 'to', 'and', 'a', 'in', 'is', 'it', 'you', 'that', 'he', 'was', 'for', 'on', 'are', 'with', 'as', 'I', 'his');
+let splitCamelCase = require('split-camelcase');
+let concat = require('ramda').concat;
+
+let wordlist = require('../stores/wordlist1.json');
+
+let mostCommonWords = new Set(wordlist);
+
+function wordToLowerCase (word) {
+	return word.toLowerCase();
+}
+
+function splitIdentifierOnWords (variable) {
+	let snaceCaseWords = variable.split('_');
+
+	snaceCaseWords = snaceCaseWords.map(splitCamelCase).reduce(concat, []);
+	return snaceCaseWords.map(wordToLowerCase);
+}
+
+function isNotPopularWord (word) {
+	return !mostCommonWords.has(word);
+}
 
 function checkWords (node, context) {
-	let wordsInVar = node.name.split(/[A-Z]/);
-	let sendReport = false;
+	let words = splitIdentifierOnWords(node.name);
 
-	wordsInVar.forEach(function (word) {
-		if (!mostCommonWords.has(word)) {
-			sendReport = true;
-		}
-	});
+	let errorExists = words.some(isNotPopularWord);
 
-	if (sendReport) {
+	if (errorExists) {
 		context.report({
 			node,
 			messageId: 'noRerelyUsedWords',
 			data: {
-				name: 'name'
+				name: node.name
 			}
 		});
 	}

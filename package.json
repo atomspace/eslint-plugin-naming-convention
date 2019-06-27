@@ -31,7 +31,9 @@
     "package.json"
   ],
   "dependencies": {
-    "requireindex": "^1.2.0"
+    "ramda": "^0.26.1",
+    "requireindex": "^1.2.0",
+    "split-camelcase": "^1.0.1"
   },
   "peerDependencies": {
     "eslint": "^4.0.0"
