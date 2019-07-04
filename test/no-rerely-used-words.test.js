@@ -59,11 +59,19 @@ ruleTester.run('no-rerely-used-words', rule, {
 		},
 		{
 			code: '{ TEST_NAME: 1 }'
+		},
+		{
+			code: 'let name101 = 1'
+		},
+		{
+			code: 'function name101() {}'
+		},
+		{
+			code: 'let name101 = function() {}'
+		},
+		{
+			code: '{ name101: 1 }'
 		}
-
-		// {
-		// 	code: '{ testName__long: 1 }'
-		// }
 	],
 
 	invalid: [

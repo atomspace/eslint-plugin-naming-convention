@@ -1,4 +1,3 @@
-let splitCamelCase = require('split-camelcase');
 let concat = require('ramda').concat;
 
 let wordlist = require('../stores/wordlist1.json');
@@ -9,10 +8,18 @@ function wordToLowerCase (word) {
 	return word.toLowerCase();
 }
 
+function ultimateStringSplitter (string) {
+	let splittedString = string.replace(/([A-Z][a-z]|\d)/g, function (coincidence) {
+		return ` ${coincidence}`;
+	});
+
+	return splittedString.split(' ');
+}
+
 function splitIdentifierOnWords (variable) {
 	let snaceCaseWords = variable.split('_');
 
-	snaceCaseWords = snaceCaseWords.map(splitCamelCase).reduce(concat, []);
+	snaceCaseWords = snaceCaseWords.map(ultimateStringSplitter).reduce(concat, []);
 	return snaceCaseWords.map(wordToLowerCase);
 }
 
