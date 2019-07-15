@@ -1,9 +1,10 @@
 let concat = require('ramda').concat;
 
-let wordlist1 = require('../stores/wordlist1.json');
-let wordlist2 = require('../stores/most-used-words-in-programmong.json');
+let wordlist1 = require('./1000-most-common-us-english-words.json');
+let wordlist2 = require('./most-used-words-in-programming.json');
+let wordlist3 = require('./most-common-words-in-english.json');
 
-let mostCommonWords = new Set(wordlist1, wordlist2);
+let mostCommonWords = new Set(wordlist1, wordlist2, wordlist3);
 
 function wordToLowerCase (word) {
 	return word.toLowerCase();
@@ -28,7 +29,7 @@ function isNotPopularWord (word) {
 	return !mostCommonWords.has(word);
 }
 
-function checkWords (node, context) {
+function checkRerelyUsedWords (node, context) {
 	let words = splitIdentifierOnWords(node.name);
 
 	let errorExists = words.some(isNotPopularWord);
@@ -44,4 +45,4 @@ function checkWords (node, context) {
 	}
 }
 
-module.exports = checkWords;
+module.exports = checkRerelyUsedWords;

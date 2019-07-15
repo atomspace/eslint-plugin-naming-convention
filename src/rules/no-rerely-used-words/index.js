@@ -1,4 +1,4 @@
-let noRerelyUsedWords = require('./no-rerely-used-words-functions').noRerelyUsedWords;
+let checkRerelyUsedWords = require('./check-rerely-used-words');
 
 module.exports = {
 	meta: {
@@ -6,5 +6,11 @@ module.exports = {
 			noRerelyUsedWords: 'Avoid using rerely used words in identifiers'
 		}
 	},
-	create: noRerelyUsedWords
+	create (context) {
+		return {
+			Identifier (node) {
+				checkRerelyUsedWords(node, context);
+			}
+		};
+	}
 };
