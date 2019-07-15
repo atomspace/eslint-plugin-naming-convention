@@ -9,7 +9,17 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				checkRerelyUsedWords(node, context);
+				let isRerelyUsedWord = checkRerelyUsedWords(node);
+
+				if (isRerelyUsedWord) {
+					context.report({
+						node,
+						messageId: 'noRerelyUsedWords',
+						data: {
+							name: node.name
+						}
+					});
+				}
 			}
 		};
 	}
