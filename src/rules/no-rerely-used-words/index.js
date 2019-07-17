@@ -9,7 +9,7 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				let isRerelyUsedWord = checkRerelyUsedWords(node);
+				let isRerelyUsedWord = checkRerelyUsedWords(node.name);
 
 				if (isRerelyUsedWord) {
 					context.report({
