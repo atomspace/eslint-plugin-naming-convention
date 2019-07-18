@@ -19,23 +19,24 @@
   },
   "homepage": "https://github.com/atomspace/eslint-plugin-naming-convention#readme",
   "devDependencies": {
-    "@atomspace/eslint": "2.4.0",
-    "@neutrinojs/jest": "8.3.0",
     "@neutrinojs/node": "8.3.0",
-    "eslint": "*",
     "neutrino": "8.3.0",
-    "jest": "^24.7.1"
+    "eslint": "*",
+    "@atomspace/eslint": "2.5.2",
+    "@neutrinojs/jest": "8.3.0"
   },
   "files": [
-    "build",
+    "src",
     "LICENSE",
     "README.md",
     "package.json"
   ],
   "dependencies": {
-    "requireindex": "^1.2.0"
+    "ramda": "^0.26.1",
+    "requireindex": "^1.2.0",
+    "split-camelcase": "^1.0.1"
   },
   "peerDependencies": {
-    "eslint": "4.0.0"
+    "eslint": "^4.0.0"
   }
 }

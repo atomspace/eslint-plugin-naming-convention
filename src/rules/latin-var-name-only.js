@@ -7,11 +7,11 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				let active = notLatinSymbolRegexp.test(node.name);
-				if (active) {
+				let hasVarNameNonLatinSymbol = notLatinSymbolRegexp.test(node.name);
+				if (hasVarNameNonLatinSymbol) {
 					context.report({
 						node, 
-						message: 'variable name consist non-latin char.'
+						message: 'variable name consist non-latin char'
 					});
 				}
 			}
