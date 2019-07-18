@@ -1,6 +1,6 @@
 const RuleTester = require('eslint').RuleTester,
 
-	rule = require('../src/rules/only-english-comments/index');
+	rule = require('../src/rules/only-english-comments');
 
 const ruleTester = new RuleTester();
 
@@ -29,6 +29,12 @@ ruleTester.run('comments-only-in-english', rule, {
 				// normal comment 1
 				// normal comment 2
 			`
+		},
+		{
+			code: '/* */'
+		},
+		{
+			code: '// '
 		}
 	],
 
@@ -58,6 +64,10 @@ ruleTester.run('comments-only-in-english', rule, {
 		},
 		{
 			code: '// ცუდი კომენტარი',
+			errors: [{ message: 'Avoid using non latin characters in comments' }]
+		},
+		{
+			code: '// យោបល់អាក្រក់',
 			errors: [{ message: 'Avoid using non latin characters in comments' }]
 		}
 	]
