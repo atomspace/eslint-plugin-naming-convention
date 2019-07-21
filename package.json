@@ -24,7 +24,8 @@
     "@neutrinojs/jest": "8.3.0",
     "@neutrinojs/node": "8.3.0",
     "neutrino": "8.3.0",
-    "eslint": "*"
+    "eslint": "*",
+    "eslint-plugin-self": "1.2.0"
   },
   "files": [
     "src",
