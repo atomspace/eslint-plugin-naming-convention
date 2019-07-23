@@ -31,10 +31,22 @@ ruleTester.run('comments-only-in-english', rule, {
 			`
 		},
 		{
-			code: '/* */'
+			code: `
+				/* normal 
+				   comment */
+			`
 		},
 		{
-			code: '// '
+			code: '/**/'
+		},
+		{
+			code: '//'
+		},
+		{
+			code: '// /**/'
+		},
+		{
+			code: '// //'
 		}
 	],
 
