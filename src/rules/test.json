@@ -1,0 +1,167 @@
+{
+	"type": "Program",
+	"start": 0,
+	"end": 287,
+	"range": [
+	  179,
+	  276
+	],
+	"body": [
+	  {
+		"type": "ImportDeclaration",
+		"start": 179,
+		"end": 208,
+		"range": [
+		  179,
+		  208
+		],
+		"specifiers": [
+		  {
+			"type": "ImportDefaultSpecifier",
+			"start": 186,
+			"end": 189,
+			"range": [
+			  186,
+			  189
+			],
+			"local": {
+			  "type": "Identifier",
+			  "start": 186,
+			  "end": 189,
+			  "range": [
+				186,
+				189
+			  ],
+			  "name": "kjk"
+			}
+		  }
+		],
+		"source": {
+		  "type": "Literal",
+		  "start": 195,
+		  "end": 207,
+		  "range": [
+			195,
+			207
+		  ],
+		  "value": "./boat1.js",
+		  "raw": "'./boat1.js'"
+		}
+	  },
+	  {
+		"type": "ImportDeclaration",
+		"start": 209,
+		"end": 241,
+		"range": [
+		  209,
+		  241
+		],
+		"specifiers": [
+		  {
+			"type": "ImportSpecifier",
+			"start": 217,
+			"end": 221,
+			"range": [
+			  217,
+			  221
+			],
+			"imported": {
+			  "type": "Identifier",
+			  "start": 217,
+			  "end": 221,
+			  "range": [
+				217,
+				221
+			  ],
+			  "name": "dock"
+			},
+			"local": {
+			  "type": "Identifier",
+			  "start": 217,
+			  "end": 221,
+			  "range": [
+				217,
+				221
+			  ],
+			  "name": "dock"
+			}
+		  }
+		],
+		"source": {
+		  "type": "Literal",
+		  "start": 228,
+		  "end": 240,
+		  "range": [
+			228,
+			240
+		  ],
+		  "value": "./boat2.js",
+		  "raw": "'./boat2.js'"
+		}
+	  },
+	  {
+		"type": "VariableDeclaration",
+		"start": 242,
+		"end": 276,
+		"range": [
+		  242,
+		  276
+		],
+		"declarations": [
+		  {
+			"type": "VariableDeclarator",
+			"start": 246,
+			"end": 275,
+			"range": [
+			  246,
+			  275
+			],
+			"id": {
+			  "type": "Identifier",
+			  "start": 246,
+			  "end": 251,
+			  "range": [
+				246,
+				251
+			  ],
+			  "name": "dock2"
+			},
+			"init": {
+			  "type": "CallExpression",
+			  "start": 254,
+			  "end": 275,
+			  "range": [
+				254,
+				275
+			  ],
+			  "callee": {
+				"type": "Identifier",
+				"start": 254,
+				"end": 261,
+				"range": [
+				  254,
+				  261
+				],
+				"name": "require"
+			  },
+			  "arguments": [
+				{
+				  "type": "Literal",
+				  "start": 262,
+				  "end": 274,
+				  "range": [
+					262,
+					274
+				  ],
+				  "value": "./boat3.js",
+				  "raw": "'./boat3.js'"
+				}
+			  ]
+			}
+		  }
+		],
+		"kind": "let"
+	  }
+	],
+	"sourceType": "module"
+  }

@@ -1,16 +1,17 @@
-const notLatinSymbolRegexp = /[^\w$]/;
+let notLatinSymbolRegexp = /[^\w$]/;
 
 module.exports = {
 	meta: {
-		type:"problem"
+		type: 'problem'
 	},
 	create (context) {
 		return {
 			Identifier (node) {
 				let hasVarNameNonLatinSymbol = notLatinSymbolRegexp.test(node.name);
+
 				if (hasVarNameNonLatinSymbol) {
 					context.report({
-						node, 
+						node,
 						message: 'variable name consist non-latin char'
 					});
 				}
@@ -18,4 +19,3 @@ module.exports = {
 		};
 	}
 };
-
