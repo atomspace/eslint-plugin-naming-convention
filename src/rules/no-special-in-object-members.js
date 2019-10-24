@@ -2,7 +2,10 @@ let specialSymbolsRegExp = /[!#%&()*+/=@^_]/;
 
 module.exports = {
 	meta: {
-		type: 'problem'
+		type: 'problem',
+		messages: {
+            errorMessage: `Object member have special symbol {{ identifier }}`
+        }
 	},
 	create (context) {
 		return {
@@ -12,19 +15,20 @@ module.exports = {
 				objectProperties.forEach(property => {
 
 					let objectMemeber = property.key.value;
-					let objectMemberHaveSpecialSymbol = objectMemeber.match(specialSymbolsRegExp);
+					let objectMemberHaveSpecialSymbol = specialSymbolsRegExp.test(objectMemeber);
+					
 
 					if (objectMemberHaveSpecialSymbol) {
+						let specialSymbolFromObjectMember = objectMemeber.match(specialSymbolsRegExp)[0];
 						context.report({
-							node,
-							message: 'object have special symbol',
-							// fix: (fixer) => {
-							// 	return fixer.insertTextAfter(node, ";");
-							// }
+							node:node,
+							messageId: 'errorMessage',
+							data:{
+								identifier:specialSymbolFromObjectMember
+							}
 						});
 					}
 				});
-//постановка, планирование, организация задач, время, мотивация
 			}
 		};
 	}
