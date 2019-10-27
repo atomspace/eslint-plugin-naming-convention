@@ -4,27 +4,27 @@ module.exports = {
 	meta: {
 		type: 'problem',
 		messages: {
-            errorMessage: `Object member have special symbol {{ identifier }}`
-        }
+			errorMessage: `The object member have special symbol {{ identifier }}`
+		}
 	},
-	create (context) {
+	create(context) {
 		return {
-			VariableDeclaration (node) {
+			VariableDeclaration(node) {
 				let objectProperties = node.declarations[0].init.properties;
 
 				objectProperties.forEach(property => {
 
 					let objectMemeber = property.key.value;
-					let objectMemberHaveSpecialSymbol = specialSymbolsRegExp.test(objectMemeber);
-					
+					let specialSymbolInObjectMember = objectMemeber.match(specialSymbolsRegExp);
 
-					if (objectMemberHaveSpecialSymbol) {
-						let specialSymbolFromObjectMember = objectMemeber.match(specialSymbolsRegExp)[0];
+
+					if (specialSymbolInObjectMember) {
+						let listOfSpecialSymbolsInThisObjectMember = specialSymbolInObjectMember.join('');
 						context.report({
-							node:node,
+							node: node,
 							messageId: 'errorMessage',
-							data:{
-								identifier:specialSymbolFromObjectMember
+							data: {
+								identifier: listOfSpecialSymbolsInThisObjectMember
 							}
 						});
 					}
