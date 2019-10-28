@@ -63,6 +63,10 @@ Object.assign(ruleTester.testerConfig, {
 				{
 					code:'let obъект = {callMe:23}',
 					errors: [{ message: errorMessage }]
+				},
+				{
+					code:'let compаre = {callMe:23}',
+					errors: [{ message: errorMessage }]
 				}
 			]
 		});
