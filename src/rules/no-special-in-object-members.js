@@ -4,7 +4,7 @@ module.exports = {
 	meta: {
 		type: 'problem',
 		messages: {
-			errorMessage: `The object member have special symbol {{ identifier }}`
+			errorMessage: `The object member have special symbols: {{ list of special symbols in object member }}`
 		}
 	},
 	create(context) {
