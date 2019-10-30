@@ -5,7 +5,7 @@ addAssignees: author
 # addReviewers: true
 
 # A list of reviewers to be added to pull requests (GitHub user name)
-# reviewers: 
+# reviewers:
 #   - reviewerA
 #   - reviewerB
 #   - reviewerC
@@ -14,6 +14,6 @@ addAssignees: author
 # Set 0 to add all the reviewers (default: 0)
 # numberOfReviewers: 0
 
-# A list of keywords to be skipped the process that add reviewers if pull requests include it 
+# A list of keywords to be skipped the process that add reviewers if pull requests include it
 skipKeywords:
   - wip
