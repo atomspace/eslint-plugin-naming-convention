@@ -19,7 +19,7 @@ module.exports = {
 
 
 					if (specialSymbolInObjectMember) {
-						let listOfSpecialSymbolsInThisObjectMember = specialSymbolInObjectMember.join('');
+						let listOfSpecialSymbolsInObjectMember = specialSymbolInObjectMember.join('');
 						context.report({
 							node: node,
 							messageId: 'errorMessage',
