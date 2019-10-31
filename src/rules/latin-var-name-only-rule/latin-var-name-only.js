@@ -1,6 +1,6 @@
 const notLatinSymbolRegexp = /[^\w$]/;
 
-const CYRILLIC_TO_LATINA_CHAR = require('../latin-var-name-only-rule/cyrillic-to-latina-char');
+let  closestLatinToCyrrilicCharSimilarity = require('./closest-latin-to-cyrrilic-char-similarity');
 
 
 module.exports = {
@@ -15,14 +15,14 @@ module.exports = {
 				if (hasVarNameNonLatinSymbol) {
 					context.report({
 						node, 
-						message: 'Variable name consist non-latin char',
+						message: 'Variable name contains non-latin char',
 						fix: (fixer) => {
 							let member = node.name;
 
-							let memberCharArray = member.split('');
+							let letterByLetterObjectMember = member.split('');
 
-							let fixedObjectMemberCharArray = memberCharArray.map((char) => {
-								return CYRILLIC_TO_LATINA_CHAR[char] || char;
+							let fixedObjectMemberCharArray = letterByLetterObjectMember.map((char) => {
+								return closestLatinToCyrrilicCharSimilarity(char);
 							});
 
 							let fixedObjectMember = fixedObjectMemberCharArray.join('');

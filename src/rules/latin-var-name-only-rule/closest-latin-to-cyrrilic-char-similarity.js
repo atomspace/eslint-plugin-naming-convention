@@ -1,4 +1,4 @@
-module.exports = {
+let cyrrillicToLatinaChar = {
 	'А': 'A',
 	'а': 'a',
 	'В': 'B',
@@ -24,3 +24,9 @@ module.exports = {
 	'У': 'Y',
 	'у': 'y'
 };
+
+function closestLatinToCyrrilicCharSimilarity(char){
+	return cyrrillicToLatinaChar[char] || char;
+}
+
+module.exports = closestLatinToCyrrilicCharSimilarity;

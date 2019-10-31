@@ -4,7 +4,7 @@ let RuleTester = require('eslint').RuleTester;
 
 let ruleTester = new RuleTester();	
 
-const errorMessage = 'Variable name consist non-latin char';
+const errorMessage = 'Variable name contains non-latin char';
 
 Object.assign(ruleTester.testerConfig, {
 	parserOptions: {
