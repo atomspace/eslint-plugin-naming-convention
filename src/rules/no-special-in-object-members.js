@@ -1,4 +1,4 @@
-let specialSymbolsRegExp = /[!#%&()*+/=@^_]/;
+const SPECIAL_SYMBOLS_REGEXP = /[!#%&()*+/=@^_]/;
 
 module.exports = {
 	meta: {
@@ -15,7 +15,7 @@ module.exports = {
 				objectProperties.forEach(property => {
 
 					let objectMemeber = property.key.value;
-					let specialSymbolInObjectMember = objectMemeber.match(specialSymbolsRegExp);
+					let specialSymbolInObjectMember = objectMemeber.match(SPECIAL_SYMBOLS_REGEXP);
 
 
 					if (specialSymbolInObjectMember) {
