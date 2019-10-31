@@ -6,7 +6,8 @@
   "scripts": {
     "test": "neutrino test --verbose --noStackTrace",
     "start": "neutrino start",
-    "build": "neutrino build"
+    "build": "neutrino build",
+    "lint": "neutrino lint"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,12 @@
   },
   "homepage": "https://github.com/atomspace/eslint-plugin-naming-convention#readme",
   "devDependencies": {
-    "@atomspace/eslint": "2.5.2",
+    "@atomspace/eslint": "3.1.0",
     "@neutrinojs/jest": "8.3.0",
     "@neutrinojs/node": "8.3.0",
     "neutrino": "8.3.0",
-    "eslint": "*"
+    "eslint": "*",
+    "eslint-plugin-self": "1.2.0"
   },
   "files": [
     "src",
