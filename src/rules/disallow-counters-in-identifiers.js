@@ -7,9 +7,10 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				let isRerelyUsedWord = /\d+/.test(node.name);
+				let numberRegExp = /\d+/;
+				let isNumberInIdentifier = numberRegExp.test(node.name);
 
-				if (isRerelyUsedWord) {
+				if (isNumberInIdentifier) {
 					context.report({
 						node,
 						messageId: 'disallowCountersInIdentifiers',
