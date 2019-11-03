@@ -22,11 +22,16 @@ let cyrrillicToLatinaChar = {
 	'Х': 'X',
 	'х': 'x',
 	'У': 'Y',
-	'у': 'y'
+	'у': 'y',
+	'і': 'i',
+	'І': 'I',
+	'И': 'N',
+	'Я':'R'
+	
 };
 
-function closestLatinToCyrrilicCharSimilarity(char){
+function findClosestLatinToCyrrilicCharSimilarity(char){
 	return cyrrillicToLatinaChar[char] || char;
 }
 
-module.exports = closestLatinToCyrrilicCharSimilarity;
+module.exports = findClosestLatinToCyrrilicCharSimilarity;
