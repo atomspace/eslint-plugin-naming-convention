@@ -22,7 +22,7 @@ module.exports = {
 
 							let letterByLetterObjectMember = member.split('');
 
-							let fixedObjectMemberCharArray = letterByLetterObjectMember.map(char => findClosestLatinToCyrrilicCharSimilarity(char));
+							let fixedObjectMemberCharArray = letterByLetterObjectMember.map(findClosestLatinToCyrrilicCharSimilarity);
 
 							let fixedObjectMember = fixedObjectMemberCharArray.join('');
 							let fixerObject = fixer.replaceText(node, fixedObjectMember);
