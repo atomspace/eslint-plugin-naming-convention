@@ -8,9 +8,9 @@ module.exports = {
 		type: 'problem',
 		fixable: 'code'
 	},
-	create (context) {
+	create(context) {
 		return {
-			Identifier (node) {
+			Identifier(node) {
 				let varNameHasNonLatinSymbol = NOT_LATIN_SYMBOL_REGEXP.test(node.name);
 
 				if (varNameHasNonLatinSymbol) {
@@ -22,9 +22,7 @@ module.exports = {
 
 							let letterByLetterObjectMember = member.split('');
 
-							let fixedObjectMemberCharArray = letterByLetterObjectMember.map(char => {
-								return findClosestLatinToCyrrilicCharSimilarity(char);
-							});
+							let fixedObjectMemberCharArray = letterByLetterObjectMember.map(char => findClosestLatinToCyrrilicCharSimilarity(char));
 
 							let fixedObjectMember = fixedObjectMemberCharArray.join('');
 							let fixerObject = fixer.replaceText(node, fixedObjectMember);
