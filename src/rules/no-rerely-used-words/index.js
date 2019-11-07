@@ -2,8 +2,11 @@ let checkRerelyUsedWords = require('./check-rerely-used-words');
 
 module.exports = {
 	meta: {
+		docs: {
+			url: 'https://github.com/atomspace/eslint-plugin-naming-convention/blob/master/docs/rules/no-rerely-used-words.md'
+		},
 		messages: {
-			noRerelyUsedWords: 'Avoid using rerely used words in identifiers'
+			noRerelyUsedWords: 'Avoid using rerely used words in identifiers.'
 		}
 	},
 	create (context) {
