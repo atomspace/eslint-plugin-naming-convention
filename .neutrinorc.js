@@ -9,7 +9,7 @@ module.exports = {
 					'self/no-rerely-used-words': 'warn',
 					// 'self/no-special-in-object-members': 'warn',
 					'eslint-plugin/require-meta-docs-url': ['warn', {
-						// 'pattern': 'https://github.com/atomspace/eslint-plugin-naming-convention/blob/master/docs/rules/{{*}}.md'
+						'pattern': 'https://github.com/atomspace/eslint-plugin-naming-convention/blob/master/docs/rules/{{name}}.md'
 					 }]
 				}
 			}
