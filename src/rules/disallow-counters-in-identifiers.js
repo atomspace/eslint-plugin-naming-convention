@@ -7,10 +7,10 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				let numberRegExp = /\d+/;
-				let isNumberInIdentifier = numberRegExp.test(node.name);
+				const numberRegExp = /\d+/;
+				let numberInIdentifier = numberRegExp.test(node.name);
 
-				if (isNumberInIdentifier) {
+				if (numberInIdentifier) {
 					context.report({
 						node,
 						messageId: 'disallowCountersInIdentifiers',

@@ -19,13 +19,11 @@
   },
   "homepage": "https://github.com/atomspace/eslint-plugin-naming-convention#readme",
   "devDependencies": {
-    "@atomspace/eslint": "2.4.0",
+    "@atomspace/eslint": "2.5.2",
     "@neutrinojs/jest": "8.3.0",
     "@neutrinojs/node": "8.3.0",
     "neutrino": "8.3.0",
-    "eslint": "*",
-    "@atomspace/eslint": "2.5.2",
-    "@neutrinojs/jest": "8.3.0"
+    "eslint": "*"
   },
   "files": [
     "src",
