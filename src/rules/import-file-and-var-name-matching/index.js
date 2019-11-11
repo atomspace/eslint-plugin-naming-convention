@@ -1,45 +1,51 @@
 let flat = require('array-flatten');
-let splitCamelcase = require('split-camelcase');
 
 const FILE_ADDITIONAL_WORDS = ['service', 'module', 'controller'];
 
-function fileNameWithoutExtension (string) {
+function removeFileExtension (string) {
 	const FILE_NAME_WITHOUT_EXTENSION_REGEXP = /([^/]*)\.[^.]*$/;
 	return FILE_NAME_WITHOUT_EXTENSION_REGEXP.exec(string)[1];
 }
 
-function join(words, separator){
-	return words.join(separator);
+function areArraysEqual(firstArray, secondArray){
+	return JSON.stringify(firstArray) === JSON.stringify(secondArray);
 }
 
-function splitWithoutSubArrays(stringToSplit, separator){
-	return flat(stringToSplit.split(separator));
+function split(string, separator){
+	return string.split(separator);
 }
 
-function toLowerCase(stringToLowerCase){
-	return stringToLowerCase.toLowerCase();
+function toLowerCase(string){
+	return string.toLowerCase();
 }
 
-function splitCamelCase (stringToSplit) {
+// function splitCamelCase (stringToSplit) {
+// 	const CAMEL_CASE_REGEXP = /(?=[A-Z])/g;
+// 	if (stringToSplit instanceof Array) {
+// 		let splitted = stringToSplit.map(word => {
+// 			return split(word, CAMEL_CASE_REGEXP);
+// 		});
+
+// 		return flat(splitted);
+// 	}
+// 	return splitCamelcase(stringToSplit);
+// }
+
+function splitCamelCase(string){
 	const CAMEL_CASE_REGEXP = /(?=[A-Z])/g;
-	if (stringToSplit instanceof Array) {
-		let splitted = stringToSplit.map(word => {
-			return splitWithoutSubArrays(word, CAMEL_CASE_REGEXP);
-		});
-
-		return flat(splitted);
-	}
-	return splitCamelcase(stringToSplit);
+	return split(string, CAMEL_CASE_REGEXP);
 }
+
+//splitToWords
 
 function splitSnakeCase (stringToSplit) {
 	const SNAKE_CASE_SEPARATOR = '_';
-	return splitWithoutSubArrays(stringToSplit, SNAKE_CASE_SEPARATOR);
+	return split(stringToSplit, SNAKE_CASE_SEPARATOR);
 }
 
 function splitKebabCase (stringToSplit) {
 	const KEBAB_CASE_SEPARATOR = '-';
-	return splitWithoutSubArrays(stringToSplit, KEBAB_CASE_SEPARATOR);
+	return split(stringToSplit, KEBAB_CASE_SEPARATOR);
 }
 
 function deleteExtraWords (words) {
@@ -55,7 +61,7 @@ function arrayWithWordsFromVariable (string) {
 }
 
 function arrayWithWordsFromFileName (string) {
-	let clearFilename = fileNameWithoutExtension(string);
+	let clearFilename = removeFileExtension(string);
 
 	let stringSplitedByAllNeedCases = splitSnakeCase(clearFilename)
 		.map(splitKebabCase)
@@ -65,7 +71,7 @@ function arrayWithWordsFromFileName (string) {
 	return stringSplitedByAllNeedCases;
 }
 
-function varAndFileNameNotEqual (varName, fileName) {
+function isNameMathcesPath (varName, fileName) {
 	let clearSplitedVarName = deleteExtraWords(
 		flat(
 			arrayWithWordsFromVariable(varName)
@@ -82,12 +88,11 @@ function varAndFileNameNotEqual (varName, fileName) {
 	let fileNameWords = clearSplitedFileName.map(toLowerCase);
 
 
-	let varNameEqualsToFileName = join(varNameWords, '') === join(fileNameWords, '');
+	let varNameEqualsToFileName = areArraysEqual(varNameWords,fileNameWords);
 
 	if (varNameEqualsToFileName) return false;
 	return true;
 }
-
 
 module.exports = {
 	meta: {
@@ -99,23 +104,24 @@ module.exports = {
 				let importVarName = node.specifiers[0].local.name;
 				let fileNameSource = node.source.value;
 				let varIsNotImported = !node.specifiers[0].imported;
+				let varNameEqualsToFileName = areArraysEqual(importVarName,fileNameSource)
 
-
-				if (varAndFileNameNotEqual(importVarName, fileNameSource) && varIsNotImported) {
+				if (varNameEqualsToFileName && varIsNotImported) {
 					context.report({
 						node,
-						message: `import file does not match with variable name`
+						message: `import file does not match variable name`
 					});
 				}
 			},
 			VariableDeclaration (node) {
 				let importVarName = node.declarations[0].id.name;
 				let fileNameSource = node.declarations[0].init.arguments[0].value;
+				let varNameEqualsToFileName = areArraysEqual(importVarName,fileNameSource)
 
-				if (varAndFileNameNotEqual(importVarName, fileNameSource)) {
+				if (varNameEqualsToFileName) {
 					context.report({
 						node,
-						message: `import file does not match with variable name`
+						message: `import file does not match variable name`
 					});
 				}
 			}

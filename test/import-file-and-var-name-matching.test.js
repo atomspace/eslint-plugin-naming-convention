@@ -4,7 +4,7 @@ let RuleTester = require('eslint').RuleTester;
 
 let ruleTester = new RuleTester();	
 
-const errorMessage = `import file does not match with variable name`;
+const errorMessage = `import file does not match variable name`;
 
 Object.assign(ruleTester.testerConfig, {
 	parserOptions: {
@@ -43,6 +43,18 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 	},
 	{
 		code: `import to_Complicated_Name from './to-complicated-name-controller.js';`
+	},
+	{
+		code:`let number = parseFloat('./dock.js');`
+	},
+	{
+		code:`let ramda = require('ramda');`
+	},
+	{ 
+		code:`let number = parseFloat('./dock');`
+	},
+	{
+		code:`import noop from '../../services/noop.js'`
 	}
 	
 	],
