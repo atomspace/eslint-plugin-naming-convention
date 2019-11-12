@@ -32,6 +32,9 @@ ruleTester.run('no-special-in-object-members', noSpecialInObjectMember, {
 		},
 		{
 			code:'let i = 0'
+		},
+		{
+			code:'{}'
 		}
 	],
 	invalid: [
