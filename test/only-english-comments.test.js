@@ -81,6 +81,14 @@ ruleTester.run('comments-only-in-english', rule, {
 		{
 			code: '// យោបល់អាក្រក់',
 			errors: [{ message: 'Avoid using non latin characters in comments' }]
+		},
+		{
+			code: '// плохой comment კომენტარი',
+			errors: [{ message: 'Avoid using non latin characters in comments' }]
+		},
+		{
+			code: '// mixedნტარი',
+			errors: [{ message: 'Avoid using non latin characters in comments' }]
 		}
 	]
 });
