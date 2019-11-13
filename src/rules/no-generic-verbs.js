@@ -3,7 +3,9 @@ let utils = require('../utils');
 module.exports = {
 	meta: {
 		type: 'problem',
-		fixable: 'code'
+		messages: {
+			errorMessage: `The identifier has generic verb: {{ genericVerb }}`
+		}
 	},
 	create(context) {
 		return {
@@ -15,7 +17,13 @@ module.exports = {
 
 				splitedVariableName.forEach(word => {
 					if (GENERIC_VERBS.includes(word)){
-						
+						context.report({
+							node: node,
+							messageId: 'errorMessage',
+							data: {
+								genericVerb: word
+							}
+						});
 					}
 				});
 

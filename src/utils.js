@@ -1,6 +1,8 @@
-function split (separator) {
-	return string => string.split(separator);
-}
+let split = separator => {
+	return string => {
+		return string.split(separator);
+	};
+};
 
 function splitCamelCase () {
 	const CAMEL_CASE_REGEXP = /(?=[A-Z])/g;
