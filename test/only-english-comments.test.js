@@ -56,39 +56,39 @@ ruleTester.run('comments-only-in-english', rule, {
 				/* плохой 
 				   комментарий */
 			`,
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// плохой comment',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// плохой комментарий',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// 糟糕的評論',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// खराब टिप्पणी',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// ცუდი კომენტარი',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// យោបល់អាក្រក់',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// плохой comment კომენტარი',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		},
 		{
 			code: '// mixedნტარი',
-			errors: [{ message: 'Avoid using non latin characters in comments' }]
+			errors: [{ message: 'Avoid using non latin characters in comments.' }]
 		}
 	]
 });

@@ -1,7 +1,7 @@
 module.exports = {
 	meta: {
 		messages: {
-			onlyEnglishComments: 'Avoid using non latin characters in comments'
+			onlyEnglishComments: 'Avoid using non latin characters in comments.'
 		}
 	},
 	create (context) {
