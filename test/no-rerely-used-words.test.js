@@ -77,67 +77,67 @@ ruleTester.run('no-rerely-used-words', rule, {
 	invalid: [
 		{
 			code: 'let strangelySoundingCombination = 1',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'function strangelySoundingCombination() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let strangelySoundingCombination = function() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: '{ strangelySoundingCombination: 1 }',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let strangely_sounding_combination = 1',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'function strangely_sounding_combination() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let strangely_sounding_combination = function() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: '{ strangely_sounding_combination: 1 }',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let strangelySounding_combination = 1',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'function strangelySounding_combination() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let strangelySounding_combination = function() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: '{ strangelySounding_combination: 1 }',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let STRANGELY_SOUNDING_COMBINATION = 1',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'function STRANGELY_SOUNDING_COMBINATION() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: 'let STRANGELY_SOUNDING_COMBINATION = function() {}',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		},
 		{
 			code: '{ STRANGELY_SOUNDING_COMBINATION: 1 }',
-			errors: [{ message: 'Avoid using rerely used words in identifiers' }]
+			errors: [{ message: 'Avoid using rerely used words in identifiers.' }]
 		}
 	]
 });
