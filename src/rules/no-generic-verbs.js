@@ -4,7 +4,7 @@ module.exports = {
 	meta: {
 		type: 'problem',
 		messages: {
-			errorMessage: `The identifier has generic verb: {{ genericVerb }}`
+			errorMessage: `The identifier has generic verb: {{ genericVerb }}.`
 		}
 	},
 	create(context) {

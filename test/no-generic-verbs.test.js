@@ -16,7 +16,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			code: ``
 		},
 		{
-			code: `function watchMovie() {return 'ok'}`
+			code: `function watchMovie() {
+				return 'ok'
+			}`
 		},
 		{
 			code: `let number = 5`
@@ -31,7 +33,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 	],
 	invalid: [
 		{
-			code: `function getNumberFive(){return 5;}`,
+			code: `function getNumberFive(){
+				return 5;
+			}`,
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
@@ -39,7 +43,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
-			code: `function validataPassword(password){return password === 'cucumber'}`,
+			code: `function validataPassword(password){
+				return password === 'cucumber'
+			}`,
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
@@ -47,7 +53,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
-			code: `fucntion watchProcessOfServer(){return 'all right'}`,
+			code: `function watch_process_of_server(){
+					return 'all right'
+				}`,
 			errors: [{ messageId: 'errorMessage' }]
 		}
 	]
