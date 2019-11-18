@@ -1,4 +1,4 @@
-const latinVarNameOnly = require('../src/rules/latin-var-name-only-rule');
+const latinVarNameOnly = require('../src/rules/latin-var-name-only');
 
 let RuleTester = require('eslint').RuleTester;
 
