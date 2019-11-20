@@ -27,13 +27,9 @@ function toLowerCase (string) {
 module.exports = {
 	splitVariable: word => {
 		let splitedWithSnakeCase = splitSnakeCase(word);
-
 		let splitedWithCamelCase = splitedWithSnakeCase.map(splitCamelCase);
-
-		let flatted = flat(splitedWithCamelCase);
-
-		let lowerCaseWords = flatted.map(toLowerCase);
-
+		let splitedWithCmaelCaseWithoutSubarrays = flat(splitedWithCamelCase);
+		let lowerCaseWords = splitedWithCmaelCaseWithoutSubarrays.map(toLowerCase);
 		return lowerCaseWords;
 	}
 };

@@ -40,10 +40,6 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
-			code: `let simpleArray = [4,5,3]`,
-			errors: [{ messageId: 'errorMessage' }]
-		},
-		{
 			code: `function validatePassword(password){
 				return password === 'cucumber'
 			}`,
@@ -61,6 +57,10 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			code: `function watch_process_of_server(){
 					return 'all right'
 				}`,
+			errors: [{ messageId: 'errorMessage' }]
+		},
+		{
+			code: `let processId = 7546`,
 			errors: [{ messageId: 'errorMessage' }]
 		}
 	]
