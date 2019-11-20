@@ -10,6 +10,7 @@ Object.assign(ruleTester.testerConfig, {
 		ecmaVersion: 2018
 	}
 });
+
 ruleTester.run('no-generic-verb', noGenericVerbs, {
 	valid: [
 		{
@@ -43,13 +44,17 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
-			code: `function validataPassword(password){
+			code: `function validatePassword(password){
 				return password === 'cucumber'
 			}`,
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{
-			code: `let simpleArray = [4,5,3]`,
+			code: `let set_variable_balue = 5`,
+			errors: [{ messageId: 'errorMessage' }]
+		},
+		{
+			code: `let set_object_value = () => 6`,
 			errors: [{ messageId: 'errorMessage' }]
 		},
 		{

@@ -3,31 +3,39 @@ let utils = require('../utils');
 module.exports = {
 	meta: {
 		type: 'problem',
+		docs: {
+			url: 'https://github.com/atomspace/eslint-plugin-naming-convention/blob/master/docs/rules/no-generic-verbs.md'
+		},
 		messages: {
-			errorMessage: `The identifier has generic verb: {{ genericVerb }}.`
+			errorMessage: `The identifier has generic verb: {{ genericVerbInVariable }}.`
 		}
 	},
-	create(context) {
+	create (context) {
 		return {
-			Identifier(node) {
-				const GENERIC_VERBS = ['get', 'set', 'array', 'check', 'validate', 'make', 'process', 'start'];
+			Identifier (node) {
+				const GENERIC_VERBS = ['set', 'get', 'array', 'check', 'validate', 'make', 'process', 'start'];
 				let variableName = node.name;
 
-				let splitedVariableName = utils.splitWord(variableName);
+				let splitedVariableName = utils.splitVariable(variableName);
 
-				splitedVariableName.forEach(word => {
-					if (GENERIC_VERBS.includes(word)){
-						context.report({
-							node: node,
-							messageId: 'errorMessage',
-							data: {
-								genericVerb: word
-							}
-						});
+				let genericVerbInVariable;
+
+				for (let word of splitedVariableName) {
+					if (GENERIC_VERBS.includes(word)) {
+						genericVerbInVariable = word;
+						break;
+					}
+				}
+
+				if (!genericVerbInVariable) return;
+
+				context.report({
+					node,
+					messageId: 'errorMessage',
+					data:{
+						genericVerbInVariable
 					}
 				});
-
-
 			}
 		};
 	}
