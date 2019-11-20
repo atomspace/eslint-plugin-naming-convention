@@ -16,14 +16,14 @@ module.exports = {
 				const GENERIC_VERBS = new Set(['set', 'get', 'check', 'validate', 'make', 'process', 'start']);
 				let variableName = node.name;
 				let splitedVariableName = utils.splitVariable(variableName);
-				let genericVerbInVariable = splitedVariableName.filter(word => GENERIC_VERBS.has(word));
+				let genericVerbsInVariable = splitedVariableName.filter(word => GENERIC_VERBS.has(word));
 
-				if (genericVerbInVariable.length === 0) return;
+				if (genericVerbsInVariable.length === 0) return;
 				context.report({
 					node,
 					messageId: 'errorMessage',
 					data: {
-						genericVerbInVariable
+						genericVerbsInVariable
 					}
 				});
 			}

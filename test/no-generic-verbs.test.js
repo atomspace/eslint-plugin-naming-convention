@@ -30,6 +30,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 				'how': 'are',
 				'you': 'hmm'
 			}`
+		},
+		{
+			code:`let i = 'get'`
 		}
 	],
 	invalid: [
