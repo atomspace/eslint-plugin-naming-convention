@@ -25,7 +25,7 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			code: `let number = 5`
 		},
 		{
-			code: `let obj = {
+				code: `let obj = {
 				hi: 'hello',
 				'how': 'are',
 				'you': 'hmm'
@@ -33,6 +33,12 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 		},
 		{
 			code:`let i = 'get'`
+		},
+		{
+			code:`
+			let i = 'set';
+			let arr = i.split('');
+			`
 		}
 	],
 	invalid: [
