@@ -35,10 +35,13 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 			code:`let i = 'get'`
 		},
 		{
-			code:`
-			let i = 'set';
-			let arr = i.split('');
-			`
+			code:`i.split('');`
+		},
+		{
+			code:`deleteName(name)`
+		},
+		{
+			code:`user.drinkSomeWater()`
 		}
 	],
 	invalid: [
