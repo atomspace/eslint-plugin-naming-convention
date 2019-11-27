@@ -42,6 +42,9 @@ ruleTester.run('no-generic-verb', noGenericVerbs, {
 		},
 		{
 			code:`user.drinkSomeWater()`
+		},
+		{
+			code:`validateValue('dfdf')`
 		}
 	],
 	invalid: [

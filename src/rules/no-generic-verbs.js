@@ -13,6 +13,10 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
+				let declaration = node.parent.type;
+
+				if (declaration !== 'FunctionDeclaration' && declaration !== 'VariableDeclarator') return;
+
 				const GENERIC_VERBS = new Set(['set', 'get', 'check', 'validate', 'make', 'process', 'start']);
 				let variableName = node.name;
 				let splitedVariableName = utils.splitVariable(variableName);
@@ -27,6 +31,7 @@ module.exports = {
 					}
 				});
 			}
+
 		};
 	}
 };
