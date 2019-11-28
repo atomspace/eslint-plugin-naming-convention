@@ -27,6 +27,19 @@ ruleTester.run('no-special-in-object-members', noSpecialInObjectMember, {
 		},
 		{
 			code: `let object = {'simpleMethod':() => 'method'}`
+		},{
+			code: ''
+		},
+		{
+			code:'let i = 0'
+		},
+		{
+			code:'{}'
+		},
+		{
+			code:`
+				let object = {}
+			`
 		}
 	],
 	invalid: [

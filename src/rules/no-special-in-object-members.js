@@ -14,6 +14,9 @@ module.exports = {
 		return {
 			VariableDeclaration (node) {
 				let objectProperties = node.declarations[0].init.properties;
+				
+				
+				if (!objectProperties) return;
 
 				objectProperties.forEach(property => {
 					let objectMemeber = property.key.value;
@@ -32,6 +35,7 @@ module.exports = {
 						});
 					}
 				});
+				
 			}
 		};
 	}
