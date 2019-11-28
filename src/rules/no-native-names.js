@@ -1,7 +1,7 @@
 module.exports = {
 	meta: {
 		messages: {
-			noNativeClassesInIdentifiers: 'Avoid using native classes in identifiers (e.g. "Sting", "Object").'
+			noNativeNames: 'Avoid using native classes in identifiers (e.g. "String", "Object").'
 		}
 	},
 	create (context) {
@@ -13,7 +13,7 @@ module.exports = {
 				if (isNativeClassNameInIdentifier) {
 					context.report({
 						node,
-						messageId: 'noNativeClassesInIdentifiers',
+						messageId: 'noNativeNames',
 						data: {
 							name: node.name
 						}
