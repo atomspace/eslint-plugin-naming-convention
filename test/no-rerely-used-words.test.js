@@ -71,6 +71,9 @@ ruleTester.run('no-rerely-used-words', rule, {
 		},
 		{
 			code: '{ name101: 1 }'
+		},
+		{
+			code: '{ createNewFunctionOnlyWithNumberObject: 1 }'
 		}
 	],
 
