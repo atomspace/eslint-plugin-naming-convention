@@ -1,97 +1,85 @@
+let path = require('path');
+
 let flat = require('array-flatten');
 
-const FILE_ADDITIONAL_WORDS = ['service', 'module', 'controller'];
-
 function removeFileExtension (string) {
-	const FILE_NAME_WITHOUT_EXTENSION_REGEXP = /([^/]*)\.[^.]*$/;
-	return FILE_NAME_WITHOUT_EXTENSION_REGEXP.exec(string)[1];
+	let fileNameWIhoutExtension = path.parse(string).name;
+
+	return fileNameWIhoutExtension;
 }
 
-function areArraysEqual(firstArray, secondArray){
-	return JSON.stringify(firstArray) === JSON.stringify(secondArray);
+function toLowerCase (string) {
+	if (typeof string === 'string') return string.toLowerCase();
+	return string;
 }
 
-function split(string, separator){
+function split (string, separator) {
 	return string.split(separator);
 }
 
-function toLowerCase(string){
-	return string.toLowerCase();
+function splitDots (string) {
+	const SEPARATOR = '.';
+
+	return string.split(SEPARATOR);
 }
 
-// function splitCamelCase (stringToSplit) {
-// 	const CAMEL_CASE_REGEXP = /(?=[A-Z])/g;
-// 	if (stringToSplit instanceof Array) {
-// 		let splitted = stringToSplit.map(word => {
-// 			return split(word, CAMEL_CASE_REGEXP);
-// 		});
-
-// 		return flat(splitted);
-// 	}
-// 	return splitCamelcase(stringToSplit);
-// }
-
-function splitCamelCase(string){
+function splitCamelCase (string) {
 	const CAMEL_CASE_REGEXP = /(?=[A-Z])/g;
+
 	return split(string, CAMEL_CASE_REGEXP);
 }
 
-//splitToWords
-
 function splitSnakeCase (stringToSplit) {
 	const SNAKE_CASE_SEPARATOR = '_';
+
 	return split(stringToSplit, SNAKE_CASE_SEPARATOR);
 }
 
 function splitKebabCase (stringToSplit) {
 	const KEBAB_CASE_SEPARATOR = '-';
+
 	return split(stringToSplit, KEBAB_CASE_SEPARATOR);
 }
 
-function deleteExtraWords (words) {
-	let wordIsNotFilleAdditionalWord = word => !FILE_ADDITIONAL_WORDS.includes(word)
+function isFileNameStartsWithNumber (pathToFile) {
+	let fileName = path.parse(pathToFile).name;
+	const FILE_NAME_STARTS_FROM_NUMBER_REGEXP = /^\d/;
 
-	let clearArray = words.filter(wordIsNotFilleAdditionalWord);
-
-	return clearArray;
+	if (FILE_NAME_STARTS_FROM_NUMBER_REGEXP.test(fileName)) return true;
+	return false;
 }
 
-function arrayWithWordsFromVariable (string) {
-	return splitSnakeCase(string).map(splitCamelCase);
+function divideVariableNameToWords (string) {
+	let stringSplitedBySnakeCase = splitSnakeCase(string);
+	let stringSplitedByAllNeedCases = flat(stringSplitedBySnakeCase.map(splitCamelCase));
+
+	let lowercaseStringSplitedByAllNeedCases = stringSplitedByAllNeedCases.map(toLowerCase);
+
+	return lowercaseStringSplitedByAllNeedCases;
 }
 
-function arrayWithWordsFromFileName (string) {
+function divideFileNameToWords (string) {
 	let clearFilename = removeFileExtension(string);
 
-	let stringSplitedByAllNeedCases = splitSnakeCase(clearFilename)
-		.map(splitKebabCase)
-		.map(splitCamelCase);
+	let stringSplitedByDots = flat(splitDots(clearFilename));
+	let stringSplitedBySnakeCase = flat(stringSplitedByDots.map(splitSnakeCase));
+	let stringSplitedByCamelCase = flat(stringSplitedBySnakeCase.map(splitCamelCase));
+	let stringSplitedByAllNeedCases = flat(stringSplitedByCamelCase.map(splitKebabCase));
 
+	let lowercaseStringSplitedByAllNeedCases = stringSplitedByAllNeedCases.map(toLowerCase);
 
-	return stringSplitedByAllNeedCases;
+	return lowercaseStringSplitedByAllNeedCases;
 }
 
-function isNameMathcesPath (varName, fileName) {
-	let clearSplitedVarName = deleteExtraWords(
-		flat(
-			arrayWithWordsFromVariable(varName)
-		)
-	);
+function areFileNameAndVariableNameEqual (fileName, variableName) {
+	let wordsFromFileName = divideFileNameToWords(fileName);
+	let wordsFromVariableName = divideVariableNameToWords(variableName);
 
-	let clearSplitedFileName = deleteExtraWords(
-		flat(
-			arrayWithWordsFromFileName(fileName)
-		)
-	);
+	const FILE_ADDITIONAL_WORDS = ['service', 'module', 'controller'];
+	let wordsToCompareWithVariable = new Set([...wordsFromFileName, ...FILE_ADDITIONAL_WORDS]);
+	let fileNameAndVariableNameEqual = wordsFromVariableName.every(word => wordsToCompareWithVariable.has(word));
 
-	let varNameWords = clearSplitedVarName.map(toLowerCase);
-	let fileNameWords = clearSplitedFileName.map(toLowerCase);
-
-
-	let varNameEqualsToFileName = areArraysEqual(varNameWords,fileNameWords);
-
-	if (varNameEqualsToFileName) return false;
-	return true;
+	return fileNameAndVariableNameEqual;
 }
 
 module.exports = {
@@ -104,9 +92,10 @@ module.exports = {
 				let importVarName = node.specifiers[0].local.name;
 				let fileNameSource = node.source.value;
 				let varIsNotImported = !node.specifiers[0].imported;
-				let varNameEqualsToFileName = areArraysEqual(importVarName,fileNameSource)
+				let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
+				let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
 
-				if (varNameEqualsToFileName && varIsNotImported) {
+				if (!varNameEqualsToFileName && varIsNotImported && !fileNameStartsWithNumber) {
 					context.report({
 						node,
 						message: `import file does not match variable name`
@@ -114,11 +103,15 @@ module.exports = {
 				}
 			},
 			VariableDeclaration (node) {
+				const FUNCTION_REQUIRE_NAME = 'require';
+				let functionIsRequire = node.declarations[0].init.callee.name === FUNCTION_REQUIRE_NAME;
 				let importVarName = node.declarations[0].id.name;
 				let fileNameSource = node.declarations[0].init.arguments[0].value;
-				let varNameEqualsToFileName = areArraysEqual(importVarName,fileNameSource)
+				let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
+				let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
 
-				if (varNameEqualsToFileName) {
+
+				if (!varNameEqualsToFileName && functionIsRequire && !fileNameStartsWithNumber) {
 					context.report({
 						node,
 						message: `import file does not match variable name`

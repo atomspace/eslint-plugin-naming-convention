@@ -45,6 +45,9 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 		code: `import to_Complicated_Name from './to-complicated-name-controller.js';`
 	},
 	{
+		code: `import to_Complicated_Name_Controller from './to-complicated-name-controller.js';`
+	},
+	{
 		code:`let number = parseFloat('./dock.js');`
 	},
 	{
@@ -55,7 +58,20 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 	},
 	{
 		code:`import noop from '../../services/noop.js'`
+	},
+	{
+		code:`import guardianMouseController from 'guardian-mouse.controller.js'`
+	},
+	{
+		code:`import guardianMouse from 'guardian-mouse.controller.js'`
+	},
+	{
+		code: `import func from '10times.js'`
+	},
+	{
+		code: `import removeKebab from 'remove-kebab.js'`
 	}
+
 	
 	],
 	invalid: [{
