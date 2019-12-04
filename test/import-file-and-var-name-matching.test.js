@@ -4,7 +4,7 @@ let RuleTester = require('eslint').RuleTester;
 
 let ruleTester = new RuleTester();	
 
-const errorMessage = `import file does not match variable name`;
+const ERROR_MESSAGE = `variable name does not match import file`;
 
 Object.assign(ruleTester.testerConfig, {
 	parserOptions: {
@@ -70,37 +70,47 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 	},
 	{
 		code: `import removeKebab from 'remove-kebab.js'`
+	},
+	{
+		code: `import './css/style.css'`
+	},
+	{
+		code:`import long from '/utils/long'`
+	},
+	{
+		code:`import lodash from 'lodash'`
 	}
+	
 
 	
 	],
 	invalid: [{
 			code: `import apples from './pears.js';`,
-			errors: [{ message: errorMessage}]
+			errors: [{ message: ERROR_MESSAGE}]
 		},
 		{
 			code: `import laptop from './SimpleComponent.jsx';`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
 			code: `let boat = require('./dock.js');`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
 			code: `import beer from './to-complicated-name.js';`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
 			code: `let goodJob = require('./dockComplicated.js');`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
 			code: `import coffeInCafe from './to-complicated-name-service.js';`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
 			code: `import coffe_in_cafe from './to-complicated-name-controller.js';`,
-			errors: [{ message: errorMessage }]
+			errors: [{ message: ERROR_MESSAGE }]
 		}
 	]
 });

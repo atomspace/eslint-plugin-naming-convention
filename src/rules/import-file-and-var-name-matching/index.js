@@ -2,10 +2,10 @@ let path = require('path');
 
 let flat = require('array-flatten');
 
-function removeFileExtension (string) {
-	let fileNameWIhoutExtension = path.parse(string).name;
-
-	return fileNameWIhoutExtension;
+function removeFileExtensionAndSufix (string) {
+	let fileNameWithoutExtension = path.parse(string).name;
+	let fileNameWithoutExtensionAndSufix = splitDots(fileNameWithoutExtension)[0];
+	return fileNameWithoutExtensionAndSufix;
 }
 
 function toLowerCase (string) {
@@ -42,7 +42,7 @@ function splitKebabCase (stringToSplit) {
 }
 
 function isFileNameStartsWithNumber (pathToFile) {
-	let fileName = path.parse(pathToFile).name;
+	let fileName = removeFileExtensionAndSufix(pathToFile);
 	const FILE_NAME_STARTS_FROM_NUMBER_REGEXP = /^\d/;
 
 	if (FILE_NAME_STARTS_FROM_NUMBER_REGEXP.test(fileName)) return true;
@@ -59,7 +59,7 @@ function divideVariableNameToWords (string) {
 }
 
 function divideFileNameToWords (string) {
-	let clearFilename = removeFileExtension(string);
+	let clearFilename = removeFileExtensionAndSufix(string);
 
 	let stringSplitedByDots = flat(splitDots(clearFilename));
 	let stringSplitedBySnakeCase = flat(stringSplitedByDots.map(splitSnakeCase));
@@ -89,34 +89,40 @@ module.exports = {
 	create (context) {
 		return {
 			ImportDeclaration (node) {
-				let importVarName = node.specifiers[0].local.name;
-				let fileNameSource = node.source.value;
-				let varIsNotImported = !node.specifiers[0].imported;
-				let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
-				let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
+				try {
+					let importVarName = node.specifiers[0].local.name;
+					let fileNameSource = node.source.value;
+					let varIsNotImported = !node.specifiers[0].imported;
+					let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
+					let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
 
-				if (!varNameEqualsToFileName && varIsNotImported && !fileNameStartsWithNumber) {
-					context.report({
-						node,
-						message: `import file does not match variable name`
-					});
+					if (!varNameEqualsToFileName && varIsNotImported && !fileNameStartsWithNumber) {
+						context.report({
+							node,
+							message: `variable name does not match import file`
+						});
+					}
 				}
+				catch (error) {return;}
 			},
 			VariableDeclaration (node) {
-				const FUNCTION_REQUIRE_NAME = 'require';
-				let functionIsRequire = node.declarations[0].init.callee.name === FUNCTION_REQUIRE_NAME;
-				let importVarName = node.declarations[0].id.name;
-				let fileNameSource = node.declarations[0].init.arguments[0].value;
-				let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
-				let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
+				try {
+					const FUNCTION_REQUIRE_NAME = 'require';
+					let functionIsRequire = node.declarations[0].init.callee.name === FUNCTION_REQUIRE_NAME;
+					let importVarName = node.declarations[0].id.name;
+					let fileNameSource = node.declarations[0].init.arguments[0].value;
+					let varNameEqualsToFileName = areFileNameAndVariableNameEqual(fileNameSource, importVarName);
+					let fileNameStartsWithNumber = isFileNameStartsWithNumber(fileNameSource);
 
 
-				if (!varNameEqualsToFileName && functionIsRequire && !fileNameStartsWithNumber) {
-					context.report({
-						node,
-						message: `import file does not match variable name`
-					});
+					if (!varNameEqualsToFileName && functionIsRequire && !fileNameStartsWithNumber) {
+						context.report({
+							node,
+							message: `variable name does not match import file`
+						});
+					}
 				}
+				catch (error) { return;}
 			}
 		};
 	}
