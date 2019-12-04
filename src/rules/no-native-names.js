@@ -7,8 +7,8 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				const NATIVE_CLASSES_REGEXP = /(number|string|object|function|boolean|bool|array)$/i;
-				let nativeClassNameIsInIdentifier = NATIVE_CLASSES_REGEXP.test(node.name);
+				const NATIVE_CLASSES = /(number|string|object|function|boolean|bool|array|regexp|error|date)$/i;
+				let nativeClassNameIsInIdentifier = NATIVE_CLASSES.test(node.name);
 
 				if (nativeClassNameIsInIdentifier) {
 					context.report({
