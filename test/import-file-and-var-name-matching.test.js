@@ -97,7 +97,7 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
-			code: `import beer from './to-complicated-name.js';`,
+			code: `import beer from './to-complicated-name';`,
 			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
@@ -105,11 +105,11 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
-			code: `import coffeInCafe from './to-complicated-name-service.js';`,
+			code: `import coffeInCafe from './to-complicated-name.service.js';`,
 			errors: [{ message: ERROR_MESSAGE }]
 		},
 		{
-			code: `import coffe_in_cafe from './to-complicated-name-controller.js';`,
+			code: `import coffe_in_cafe from './to-complicated-name.controller.js';`,
 			errors: [{ message: ERROR_MESSAGE }]
 		}
 	]
