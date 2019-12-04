@@ -111,6 +111,10 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 		{
 			code: `import coffe_in_cafe from './to-complicated-name.controller.js';`,
 			errors: [{ message: ERROR_MESSAGE }]
+		},
+		{
+			code:`import iWnatToSleep from 'noDoNetwork'`,
+			errors: [{ message: ERROR_MESSAGE }]
 		}
 	]
 });
