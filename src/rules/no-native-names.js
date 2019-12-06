@@ -7,7 +7,7 @@ module.exports = {
 	create (context) {
 		return {
 			Identifier (node) {
-				const NATIVE_CLASSES = /(number|string|object|function|boolean|bool|array|regexp|error|date)$/i;
+				const NATIVE_CLASSES = /(number|string|object|function|boolean|bool|array|undefined|null|symbol|set|promise)$/i;
 				let nativeClassNameIsInIdentifier = NATIVE_CLASSES.test(node.name);
 
 				if (nativeClassNameIsInIdentifier) {
