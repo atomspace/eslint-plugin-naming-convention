@@ -34,6 +34,7 @@
     "package.json"
   ],
   "dependencies": {
+    "array-flatten": "^2.1.2",
     "ramda": "^0.26.1",
     "requireindex": "^1.2.0",
     "split-camelcase": "^1.0.1"
