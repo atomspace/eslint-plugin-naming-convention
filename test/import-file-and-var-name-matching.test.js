@@ -39,13 +39,13 @@ ruleTester.run('import-file-and-var-name-matching', imoprtFileAndVarNameMatching
 		code: `import SimpleComponent from './SimpleComponent.jsx';`
 	},
 	{
-		code: `import to_Complicated_Name from './to-complicated-name-service.js';`
+		code: `import to_Complicated_Name from './to-complicated-name.service.js';`
 	},
 	{
-		code: `import to_Complicated_Name from './to-complicated-name-controller.js';`
+		code: `import to_Complicated_Name from './to-complicated-name.controller.js';`
 	},
 	{
-		code: `import to_Complicated_Name_Controller from './to-complicated-name-controller.js';`
+		code: `import to_Complicated_Name_Controller from './to-complicated-name.controller.js';`
 	},
 	{
 		code:`let number = parseFloat('./dock.js');`
