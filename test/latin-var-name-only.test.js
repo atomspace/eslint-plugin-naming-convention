@@ -1,10 +1,10 @@
-const latinVarNameOnly = require('../src/rules/latin-var-name-only-rule');
+const latinVarNameOnly = require('../src/rules/latin-var-name-only');
 
 let RuleTester = require('eslint').RuleTester;
 
 let ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2018 } });
 
-const errorMessage = 'Variable name contains non-latin character';
+const errorMessage = 'Variable name contains non-latin character.';
 
 ruleTester.run('latin-var-name-only', latinVarNameOnly, {
 	valid: [{

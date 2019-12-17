@@ -6,6 +6,9 @@ let findClosestLatinToCyrrilicCharSimilarity = require('./closest-latin-to-cyrri
 module.exports = {
 	meta: {
 		type: 'problem',
+		docs: {
+			url: 'https://github.com/atomspace/eslint-plugin-naming-convention/blob/master/docs/rules/latin-var-name-only.md'
+		},
 		fixable: 'code'
 	},
 	create (context) {
@@ -16,7 +19,7 @@ module.exports = {
 				if (varNameHasNonLatinSymbol) {
 					context.report({
 						node,
-						message: 'Variable name contains non-latin character',
+						message: 'Variable name contains non-latin character.',
 						fix: fixer => {
 							let member = node.name;
 
